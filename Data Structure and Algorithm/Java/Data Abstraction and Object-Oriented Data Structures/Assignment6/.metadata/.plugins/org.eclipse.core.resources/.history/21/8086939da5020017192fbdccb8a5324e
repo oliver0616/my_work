@@ -1,0 +1,41 @@
+package assg6_Chen;
+
+public class DVD {
+
+	String title;
+	String category;
+	int runTime;
+	int year;
+	int price;
+	
+	public DVD(String titleName, String categoryName, int run, int yearT, int priceM)
+	{
+		title= titleName;
+		category= categoryName;
+		runTime= run;
+		year= yearT;
+		price= priceM;
+	}
+	
+	public String getTitle()
+	{
+		return title;
+	}
+	public String getCategory()
+	{
+		return category;
+	}
+	public int getRunTime()
+	{
+		return runTime;
+	}
+	public int getYear()
+	{
+		return year;
+	}
+	public int getPrice()
+	{
+		return price;
+	}
+	
+}

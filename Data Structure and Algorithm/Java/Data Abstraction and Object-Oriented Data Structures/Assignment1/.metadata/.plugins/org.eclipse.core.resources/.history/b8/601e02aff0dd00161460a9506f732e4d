@@ -1,0 +1,44 @@
+//Name: Huan-Yun Chen
+//CSCI 2540-001
+
+import java.util.Scanner;
+
+public class grades {
+	
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		Scanner scan1 = new Scanner(System.in);
+		int i;  // number of grades
+		int b = 0;  // store the input from user(the grades)
+		int c = 0;  // store the value go through the array
+		int total =0 ;  // store the total grades
+		int average;  // store the average grades
+		int counter = 0; // count the grades that are higher than average
+		
+		System.out.println("Please enter the number of grades:");
+		i = scan.nextInt(); 
+		int[] gradeArray = new int[i];
+		
+		for(int a = 0; a<i; a++){
+			System.out.println("The average grade is:");			
+			b = scan1.nextInt();
+			gradeArray[a] = b;
+			total = total + b;
+		}
+		average = total / i ;
+		System.out.println("The average grade is:"+ average);
+		System.out.println("The grades above the average grade are:");
+		
+		for(int a =0; a<i; a++){
+		   c = gradeArray[a];
+		   if(c > average){
+			   System.out.println(c);
+			   counter ++;
+		   }
+		}
+		System.out.println("for a total of"+ counter+" grades");
+		scan.close();
+		scan1.close();
+	}
+}

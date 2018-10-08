@@ -1,0 +1,218 @@
+/*
+ * Created on 2017/1/28
+ */
+package assg2_Chen;
+/**
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ *
+ * @declare numerator numerator of the rational number
+ * @declare denominator numerator of the rational number
+ * 
+ * Rational Number Calculator
+ */
+public class RationalNum 
+{
+	int numerator;
+	int denominator;
+	/**
+	 * @declare numerator numerator of the rational number
+	 * @declare denominator numerator of the rational number
+	 * 
+	 * when the rational number equal to 0
+	 */
+	public RationalNum()
+	{
+		numerator = 0;
+		denominator = 1;
+	}
+	/**
+	 * @declare numerator numerator of the rational number
+	 * @declare denominator numerator of the rational number
+	 *
+	 * when user enter a integer as a rational number
+	 */
+	public RationalNum(int numeratorPar)
+	{
+		numerator = numeratorPar;
+		denominator = 1;
+	}
+	/**
+	 * @declare numerator numerator of the rational number
+	 * @declare denominator numerator of the rational number
+	 * 
+	 * when numerator and denominator both have a value
+	 */		
+	public RationalNum(int numeratorPar,int denominatorPar)
+	{
+		numerator = numeratorPar;
+		denominator = denominatorPar;
+		
+		// user try to type in zero as the denominator
+		if(denominator == 0)
+		{
+			System.out.println("Zero cannot be in the denominator");
+		}
+		// switch denominator into positive number and switch numerator to negative number 
+		else if(denominator <0)
+		{
+			denominator = denominator *-1;
+			numerator = numerator *-1;
+		}
+		// change denominator and numerator back to positive when both are negative
+		else if(denominator <0 && numerator <0)
+		{
+			denominator = denominator *-1;
+			numerator = numerator * -1;
+		}		
+	}
+	/**
+	 * @declare Integer a use to store numerator value
+	 * @declare Integer b use to store denominator value
+	 * 
+	 * return numerator and denominator as a string
+	 * @return Return a string with numerator/denominator
+	 */
+	public String toString()
+	{
+		Integer a;
+		Integer b;
+		a=numerator;
+		b=denominator;
+		return a.toString() +"/"+ b.toString();		
+	}
+	/**
+	 *  
+	 * @return Return denominator
+	 */
+	public int getDenominator()
+	{
+		return denominator;
+	}
+	/**
+	 * 
+	 * @return Return numerator
+	 */
+	public int getNumerator()
+	{
+		return numerator;
+	}
+	/**
+	 * 
+	 * @param a user input object
+	 * @return Return false when object isn't rational number
+	 * @return Return false when object isn't equal to other rational number
+	 * @return Return true when object is equal to other rational number
+	 * 
+	 * figure the object is rational number or not
+	 * figure the object is equal to other rational number or not
+	 */
+	public boolean equal(Object a)
+	{
+		Class c = a.getClass();
+		//System.out.print(c.getName());
+		if(c.getName()!= "assg2_Chen.RationalNum")
+		{
+			return false;
+		}
+		else
+		{
+			RationalNum b = RationalNum.class.cast(a);
+			//Equality: (A/B) == (C/D) means (A*D) == (C*B)
+			int x,y;
+			x = (numerator*b.getDenominator());
+			y = (denominator*b.getNumerator());
+			if(x == y)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	/**
+	 * 
+	 * @param y the rational number that user input
+	 * @declare a numerator
+	 * @declare b denominator
+	 * @return z Return rational number
+	 * 
+	 * addition between two rational numbers
+	 */
+	public RationalNum add(RationalNum y)
+	{
+		int a,b;		//a = numerator b= denominator
+		//Addition: (A/B) + (C/D) = (A*D + B*C) / (B*D)
+		a = (numerator*y.getDenominator() + denominator*y.getNumerator());
+		b = (denominator*y.getDenominator());
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+	/**
+	 * 
+	 * @param y the rational number that user input
+	 * @declare a numerator
+	 * @declare b denominator
+	 * @return z Return rational number
+	 * 
+	 * subtraction between two rational numbers
+	 */
+	public RationalNum sub(RationalNum y)
+	{
+		int a,b;		//a = numerator b= denominator
+		//Subtraction: (A/B) - (C/D) = (A*D - B*C) / (B*D)
+		a = (numerator*y.getDenominator() - denominator*y.getNumerator());
+		b = (denominator*y.getDenominator());
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+	/**
+	 * 
+	 * @param y the rational number that user input
+	 * @declare a numerator
+	 * @declare b denominator
+	 * @return z Return rational number
+	 * 
+	 * Multiplication between two rational numbers 
+	 */
+	public RationalNum mul(RationalNum y)
+	{
+		int a,b;		//a = numerator b= denominator
+		//Multiplication: (A/B) * (C/D) = (A*C) / (B*D)
+		a = (numerator*y.getNumerator());
+		b = (denominator*y.getDenominator());
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+	/**
+	 * 
+	 * @param y the rational number that user input
+	 * @declare a numerator
+	 * @declare b denominator
+	 * @return z Return rational number
+	 * 
+	 * Division between two rational numbers
+	 */
+	public RationalNum div (RationalNum y)
+	{
+		int a,b;		//a = numerator b= denominator
+		// Division: (A/B) / (C/D) = (A*D) / (B*C)
+		a = (numerator*y.getDenominator());
+		b = (denominator*y.getNumerator());
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+	
+	// negation of a rational number
+	public RationalNum neg()
+	{
+		int a,b;		//a = numerator b= denominator
+		// Negation: -(A/B) = ((-A)/B)
+		a = (numerator*-1);
+		b = (denominator);
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+}

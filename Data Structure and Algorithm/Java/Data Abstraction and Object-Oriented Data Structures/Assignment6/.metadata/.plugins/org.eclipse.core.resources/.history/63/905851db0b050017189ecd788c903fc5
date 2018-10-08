@@ -1,0 +1,21 @@
+package assg6_Chen;
+import java.util.ArrayList;
+
+import java.io.FileNotFoundException;
+/**
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ * 
+ * This interface allow programmer to implement it into other classes
+ * @declare loadData loads the data containing the DVD collection entries from a given file
+ */
+public interface DVDCollectionInterface 
+{
+	public void loadData(String FileName) throws FileNotFoundException;
+	public DVD lookupEntry(String DVDTitle);
+	public DVD addOrChangeDVD(String titleN, String categoryN,String runTimeT
+				,String yearT,String priceT);
+	public DVD removeDVD(String DVDTitle);
+	public ArrayList<DVD> getDVDsInCategory(String categoryN);
+	public void save() throws FileNotFoundException;
+}

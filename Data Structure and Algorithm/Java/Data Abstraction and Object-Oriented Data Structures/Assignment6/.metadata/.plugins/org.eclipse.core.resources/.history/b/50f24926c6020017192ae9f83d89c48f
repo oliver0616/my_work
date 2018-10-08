@@ -1,0 +1,93 @@
+package assg6_Chen;
+
+public class DVD {
+
+	String title;
+	String category;
+	int runTime;
+	int year;
+	int price;
+	
+	public DVD(String titleName, String categoryName, int run, int yearT, int priceM)
+	{
+		title= titleName;
+		category= categoryName;
+		runTime= run;
+		year= yearT;
+		price= priceM;
+	}
+	
+	public String getTitle()
+	{
+		return title;
+	}
+	public String getCategory()
+	{
+		return category;
+	}
+	public int getRunTime()
+	{
+		return runTime;
+	}
+	public int getYear()
+	{
+		return year;
+	}
+	public int getPrice()
+	{
+		return price;
+	}
+	
+	public void setCategory(String categoryName)
+	{
+		category = categoryName;
+	}
+	public void setRunTime(int run)
+	{
+		runTime = run;
+	}
+	public void setYear(int yearT)
+	{
+		year = yearT;
+	}
+	public void setPrice(int priceM)
+	{
+		price = priceM;
+	}
+	
+	public String toString()
+	{
+		String titleName;
+		String categoryName; 
+		int run;
+		int yearT;
+		int priceM;
+		titleName = title;
+		categoryName = category;
+		run = runTime;
+		yearT = year;
+		priceM = price;
+		return titleName+"\n"+categoryName+"\n"+run+"\n"+yearT+"\n"+priceM;
+	}
+	public boolean equal(Object a)
+	{
+		Class c = a.getClass();
+		if(c.getName()!= "assg6_Chen.DVD")
+		{
+			return false;
+		}
+		else
+		{
+			DVD b = DVD.class.cast(a);
+			String name = b.getTitle();
+			if(title == name)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+}

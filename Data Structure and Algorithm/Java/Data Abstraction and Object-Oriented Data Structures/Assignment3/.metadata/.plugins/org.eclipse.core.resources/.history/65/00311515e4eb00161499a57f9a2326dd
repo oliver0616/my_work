@@ -1,0 +1,24 @@
+package assg3_Chen;
+
+public class StudentAccountDemo {
+	public static void main(String[] args) 
+	{
+		StudentAccount oliver = new StudentAccount(100);
+		StudentAccount kyle = new StudentAccount(999);
+		System.out.println(oliver.toString()+"\n");
+		System.out.println(kyle.toString()+"\n");
+		oliver.setBalance(10000);
+		//System.out.println(oliver.toString());
+		oliver.deposit(5555);
+		//System.out.println(oliver.toString());
+		oliver.charge(999);
+		//System.out.println(oliver.toString());
+		oliver.transferOut(kyle, 5000);
+		System.out.println(oliver.toString());
+		System.out.println(kyle.toString());
+		RewardsAccount paul = new RewardsAccount(150);
+		paul.redeemRewards();
+		System.out.println(paul.toString());
+		
+	}
+}

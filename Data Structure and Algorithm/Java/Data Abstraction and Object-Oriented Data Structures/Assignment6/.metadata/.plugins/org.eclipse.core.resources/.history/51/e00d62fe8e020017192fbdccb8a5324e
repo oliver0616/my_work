@@ -1,0 +1,7 @@
+package assg6_Chen;
+
+public interface DVDCollectionInterface 
+{
+	public void loadData();
+	public void lookupEntry();
+}

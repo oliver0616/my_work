@@ -1,0 +1,123 @@
+package assg7_Chen;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+public class FlightMap implements FlightMapInterface 
+{
+	private ArrayList<LinkedList> map;
+
+	/**
+	 * Creates an empty FlightMap
+	 */
+	public FlightMap() 
+	{
+		map = new ArrayList<LinkedList>();
+	}
+	
+	public void loadFlightMap(String cityFileName, String flightFileName)
+			throws FileNotFoundException 
+	{
+		File cityF = new File(cityFileName);
+		Scanner cityFScan = new Scanner(cityF);
+		File flightF = new File(flightFileName);
+		Scanner flightFScan = new Scanner(flightF);
+		String a;
+		String one;
+		String two;
+		
+		while(cityFScan.hasNextLine())
+		{
+			LinkedList temp = new LinkedList();
+			temp.add(new City(cityFScan.nextLine()));
+			map.add(temp);
+		}
+		while(flightFScan.hasNextLine())
+		{
+			a = flightFScan.nextLine();
+			String[] splitString = a.split("\t");
+			one = splitString[0];
+			two = splitString[1];
+			insertAdjacent(new City(one),new City(two));
+		}
+	}
+
+	public void insertAdjacent(City aCity, City adjCity) 
+	{	
+		ListIterator<LinkedList> iter = map.listIterator();
+		boolean condiction = true;
+		while(condiction)
+		{
+			if(iter.hasNext())
+			{
+				if(iter.next().getFirst().equals(aCity))
+				{
+					iter.previous().add(adjCity);
+					condiction = false;
+				}
+				else
+				{
+					condiction = false;
+				}
+			}
+		}
+	}
+	
+	public void displayFlightMap() 
+	{
+		
+	}
+
+	
+	public void displayAllCities() 
+	{
+		
+	}
+
+	
+	public void displayAdjacentCities(City aCity) 
+	{
+		
+	}
+
+	
+	public void markVisited(City aCity)
+	{
+		
+	}
+
+	
+	public void unVisitAll() 
+	{
+		
+	}
+
+
+	public boolean isVisited(City aCity) 
+	{
+		return false;
+	}
+
+	
+	public City getNextCity(City aCity) 
+	{
+		return null;
+	}
+
+	
+	public boolean servesCity(City aCity) 
+	{
+		return false;
+	}
+
+
+	public LinkedList<City> getPath(City originCity, City destinationCity) 
+	{
+		return null;
+	}
+
+}

@@ -1,0 +1,29 @@
+package assg7_Chen;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.util.Scanner;
+
+public class DeterminePaths 
+{
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		FlightMap test = new FlightMap();
+		test.loadFlightMap("cityFile.txt", "flightFile.txt");
+		
+		File requestFile = new File("requestFile.txt");
+		Scanner requestFScan = new Scanner(requestFile);
+		String requestScan;
+		String requestScan1;
+		String requestScan2;
+		
+		while(requestFScan.hasNextLine())
+		{
+			requestScan = requestFScan.nextLine();
+			String[] splitStrings = requestScan.split("\t");
+			requestScan1 = splitStrings[0];
+			requestScan2 = splitStrings[1];
+		}
+		
+	}
+
+}

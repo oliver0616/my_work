@@ -1,0 +1,13 @@
+package assg4_Chen;
+
+public class BookNotFindException {
+	public BookNotFindException()
+	{
+		System.out.println("Can not find the id");
+	}
+	public BookNotFindException(String error)
+	{
+		System.out.println("Can not find the id");
+	}
+}
+	

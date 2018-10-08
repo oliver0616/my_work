@@ -1,0 +1,201 @@
+package assg6_Chen;
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class DVDApplication 
+{
+	public static void main(String args[]) throws FileNotFoundException 
+	{	
+		Scanner scanMenu = new Scanner(System.in);
+		Scanner scanUser = new Scanner(System.in);
+		int menuInput;
+		
+		String userTitle;
+		DVD userTitleD = new DVD(null, null, null, null, null);
+		String userCategory;
+		String userRunTime;
+		String userYear;
+		String userPrice;
+		
+		int submenu2;
+		Boolean submenu2Loop = true;
+		
+		Boolean menuLoop = true;
+		ArrayListDVDCollection test = new ArrayListDVDCollection();
+		ArrayList<DVD> categoryTest;
+		
+//=================================================================================		
+		test.loadData("DVDCollection.txt");
+		while(menuLoop)
+		{
+			System.out.println("1.Add new DVD Entry");
+			System.out.println("2.Change existing DVD entry");
+			System.out.println("3.Look Up DVD Entry");
+			System.out.println("4.Display DVDs By Category");
+			System.out.println("5.Remove DVD Entry");
+			System.out.println("6.Save Data");
+			System.out.println("7.Exit");
+			System.out.println("Enter a number to select your action:");
+			menuInput = scanMenu.nextInt();
+			if(menuInput == 1)
+			{		
+				System.out.println("Please enter a DVD title:");
+				userTitle = scanUser.nextLine();
+				userTitleD = test.lookupEntry(userTitle);
+				if(userTitleD == null)
+				{
+					System.out.println("Please enter the Category:");
+					userCategory = scanUser.nextLine();
+					System.out.println("Please enter the RunTime:");
+					userRunTime = scanUser.nextLine();
+					System.out.println("Please enter the Year:");
+					userYear = scanUser.nextLine();
+					System.out.println("Please enter the Price:");
+					userPrice = scanUser.nextLine();
+					test.addOrChangeDVD(userTitle, userCategory, userRunTime, userYear, userPrice); 
+				}
+				else
+				System.out.println("This DVD is already in the System.");
+			}
+			else if(menuInput == 2)
+			{
+				System.out.println("Please enter a DVD title:");
+				userTitle = scanUser.nextLine();
+				userTitleD = test.lookupEntry(userTitle);
+				if(userTitleD == null)
+				{
+					System.out.println("DVD is not exist in the System");
+				}
+				else
+				{
+					userCategory = userTitleD.category;
+					userRunTime = userTitleD.runTime;
+					userYear = userTitleD.year;
+					userPrice = userTitleD.price;
+					while(submenu2Loop)
+					{
+						System.out.println("Press 1-5 to choose the options");
+						System.out.println("1: Title:"+userTitleD.title);
+						System.out.println("2: Category:"+userCategory);
+						System.out.println("3: RunTime:"+userRunTime);
+						System.out.println("4: Year:"+userYear);
+						System.out.println("5: Price:"+userPrice);
+						System.out.println("0: Return to main menu");
+						submenu2 = scanUser.nextInt();
+						scanUser.nextLine();
+						if(submenu2 == 1)
+						{
+							System.out.println("Title can not be change");
+						}
+						else if(submenu2 == 2)
+						{
+							System.out.println("Please enter the new Category:");
+							userCategory = scanUser.nextLine();
+						}
+						else if(submenu2 == 3)
+						{
+							System.out.println("Please enter the new RunTime:");
+							userRunTime = scanUser.nextLine();
+						}
+						else if(submenu2 == 4)
+						{
+							System.out.println("Please enter the new Year:");
+							userYear = scanUser.nextLine();
+						}
+						else if(submenu2 == 5)
+						{
+							System.out.println("Please enter the new Price:");
+							userPrice = scanUser.nextLine();
+						}
+						else if(submenu2 == 0)
+						{
+							test.addOrChangeDVD(userTitle, userCategory, userRunTime, userYear, userPrice);
+							break;
+						}
+						else
+						{
+							System.out.println("That's a invalid number!!");
+						}
+					}
+				}
+			}
+			else if(menuInput == 3)
+			{
+				System.out.println("Please enter a DVD title:");
+				userTitle = scanUser.nextLine();
+				userTitleD = test.lookupEntry(userTitle);
+				if(userTitleD == null)
+				{
+					System.out.println("This DVD is not in the System");
+				}
+				else
+				{
+					System.out.println("1: Title:"+userTitleD.title);
+					System.out.println("2: Category:"+userTitleD.category);
+					System.out.println("3: RunTime:"+userTitleD.runTime);
+					System.out.println("4: Year:"+userTitleD.year);
+					System.out.println("5: Price:"+userTitleD.price);
+				}
+			}
+			else if(menuInput == 4)
+			{
+				System.out.println("Please enter a DVD Category:");
+				userCategory = scanUser.next();
+				categoryTest = test.getDVDsInCategory(userCategory);
+				if(categoryTest.isEmpty())
+				{
+					System.out.println("There are no DVD in the Requested category");
+				}
+				else
+				{
+					for(int i =0; i < test.getCateLine(); i++)
+					{
+						String a = categoryTest.get(i).title;
+						System.out.println(a);
+					}
+				}
+			}
+			else if(menuInput == 5)
+			{
+				System.out.println("Please enter a DVD title:");
+				userTitle = scanUser.nextLine();
+				userTitleD = test.lookupEntry(userTitle);
+				if(userTitleD == null)
+				{
+					System.out.println("DVD is not exist in the System");
+				}
+				else
+				{
+					userCategory = userTitleD.category;
+					userRunTime = userTitleD.runTime;
+					userYear = userTitleD.year;
+					userPrice = userTitleD.price;
+					test.removeDVD(userTitle);
+					System.out.println("1: Title:"+userTitleD.title);
+					System.out.println("2: Category:"+userCategory);
+					System.out.println("3: RunTime:"+userRunTime);
+					System.out.println("4: Year:"+userYear);
+					System.out.println("5: Price:"+userPrice);
+					System.out.println("This DVD has been removed");
+				}
+			}
+			else if(menuInput == 6)
+			{
+				test.save();
+				System.out.println("Saved");
+			}
+			else if(menuInput == 7)
+			{
+				test.save();
+				System.exit(0);
+			}
+			else
+			{
+				System.out.println("That's not a selection");
+			}
+		}
+		scanMenu.close();
+		scanUser.close();
+	}
+}

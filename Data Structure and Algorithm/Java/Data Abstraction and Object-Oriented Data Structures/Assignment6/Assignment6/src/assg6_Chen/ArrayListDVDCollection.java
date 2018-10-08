@@ -1,0 +1,195 @@
+package assg6_Chen;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.PrintWriter;
+/**
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ * 
+ * 
+ * @declare titleName name of the DVD
+ * @declare categoryName the category for the DVD
+ * @declare runTimeT the total length of the DVD
+ * @declare yearT the year when DVD was publish
+ * @declare priceP the price of the DVD
+ * @declare list the ArrayList of the DVD
+ * @declare cateList the ArrayList of the category
+ * @declare line the counter to see how many DVD have import into List
+ * @declare cateLine the counter to see how many Category have import into CateList
+ * 
+ * This class include the ArrayList of the DVD and all the interface methods
+ */
+public class ArrayListDVDCollection implements DVDCollectionInterface
+{
+	String titleName;
+	String categoryName;
+	String runTimeT;
+	String yearT;
+	String priceP;
+	
+	ArrayList<DVD> list;
+	ArrayList<DVD> cateList;
+	int line = 0;
+	int cateLine = 0;
+//Constructor
+	/**
+	 * 
+	 * construct a list
+	 */
+	public ArrayListDVDCollection()
+	{
+		list = new ArrayList<DVD>();
+	}
+	/**
+	 * @param FileName the file that user going to use
+	 * 
+	 * loadData loads the data containing the DVD collection entries from a given file
+	 */
+	public void loadData(String FileName) throws FileNotFoundException 
+	{
+		File text = new File(FileName);
+		Scanner scan = new Scanner(text);	
+		while(scan.hasNextLine())
+		{		
+			titleName = scan.nextLine();
+			categoryName = scan.nextLine();
+			runTimeT = scan.nextLine();
+			yearT = scan.nextLine();
+			priceP = scan.nextLine();
+			DVD t1 = new DVD(titleName, categoryName,runTimeT,yearT,priceP);
+			list.add(line,t1);
+			line++;
+		}
+		scan.close();
+	}
+	/**
+	 * @param DVDTitle the title of the DVD
+	 * 
+	 * lookupEntry return the DVD entry if found, or null if not found
+	 */
+	public DVD lookupEntry(String DVDTitle)
+	{
+		String temp;
+		for(int i=0; i<line;i++)
+		{
+			temp =list.get(i).title;
+			if(DVDTitle.equals(temp))
+			{
+				return list.get(i);
+			}
+		}
+		return null;
+	}
+	/**
+	 * @param titleN name of the DVD
+	 * @param categoryN the category for the DVD
+	 * @param runTimeT the total length of the DVD
+	 * @param yearT the year when DVD was publish
+	 * @param priceT the price of the DVD
+	 * @declare temp store the title of the list
+	 * 
+	 * addOrChangeDVD add DVD if title is not found or change DVD information if DVD title found
+	 */
+	public DVD addOrChangeDVD(String titleN, String categoryN,String runTimeT
+				,String yearT,String priceT)
+	{
+		String temp;
+		for(int i=0; i<line;i++)
+		{
+			temp =list.get(i).title;
+			if(titleN.equals(temp))
+			{
+				list.get(i).category = categoryN;
+				list.get(i).runTime = runTimeT;
+				list.get(i).year = yearT;
+				list.get(i).price = priceT;
+				return list.get(i);
+			}			
+		}
+		DVD t = new DVD(titleN, categoryN,runTimeT,yearT,priceT);
+		list.add(line,t);
+		line++;
+		return null;
+	}
+	/**
+	 * @param DVDTitle title name of the DVD
+	 * @declare temp1 title of the list
+	 * @declare temp2 use to store the DVD
+	 * 
+	 * removeDVD remove the DVD when user put in the title
+	 */
+	public DVD removeDVD(String DVDTitle)
+	{
+		for(int i=0; i<line;i++)
+		{
+			String temp1 =list.get(i).title;
+			DVD temp2 =list.get(i);
+			if(DVDTitle.equals(temp1))
+			{
+				list.remove(i);
+				line--;
+				return temp2;
+			}
+		}
+		return null;
+	}
+	/**
+	 * @param categoryN category Name
+	 * @declare cateTitle name of the DVD 
+	 * @declare cateCategory the category for the DVD
+	 * @declare cateRunTime the total length of the DVD
+	 * @declare cateYear the year when DVD was publish
+	 * @declare catePrice the price of the DVD
+	 * @declare cateList the category list
+	 * 
+	 * getDVDsInCategory list out the DVD titles in the same category
+	 */
+	public ArrayList<DVD> getDVDsInCategory(String categoryN)
+	{
+		cateList = new ArrayList<DVD>();
+		String cateTitle;
+		String cateCategory;
+		String cateRunTime;
+		String cateYear;
+		String catePrice;
+		
+		for(int i =0; i<line;i++)
+		{
+			String cateTemp = list.get(i).category;
+			if(categoryN.equals(cateTemp))
+			{
+				cateTitle = list.get(i).title;
+				cateCategory = list.get(i).category;
+				cateRunTime = list.get(i).runTime;
+				cateYear = list.get(i).year;
+				catePrice = list.get(i).price;
+				DVD cateDVD = new DVD(cateTitle,cateCategory,cateRunTime,cateYear,catePrice);
+				cateList.add(cateLine, cateDVD);
+				cateLine++;
+			}
+		}
+			return cateList;
+	}
+	/**
+	 * save the file
+	 */
+	public void save()throws FileNotFoundException 
+	{
+		PrintWriter writer = new PrintWriter("DVDCollection.txt");
+		for(int i =0; i<line;i++)
+		{
+			writer.println(list.get(i).title);
+			writer.println(list.get(i).category);
+			writer.println(list.get(i).runTime);
+			writer.println(list.get(i).year);
+			writer.println(list.get(i).price);
+		}
+		writer.close();
+	}
+	public int getCateLine()
+	{
+		return cateLine;
+	}
+}

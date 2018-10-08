@@ -1,0 +1,112 @@
+package assg6_Chen;
+
+import java.util.Collection;
+import java.util.Collections;
+
+public class DVD {
+
+	String title;
+	String category;
+	String runTime;
+	String year;
+	String price;
+	
+	public DVD(String titleName, String categoryName, String run, String yearT, String priceM)
+	{
+		title= titleName;
+		category= categoryName;
+		runTime= run;
+		year= yearT;
+		price= priceM;
+	}
+	
+	public String getTitle()
+	{
+		return title;
+	}
+	public String getCategory()
+	{
+		return category;
+	}
+	public String getRunTime()
+	{
+		return runTime;
+	}
+	public String getYear()
+	{
+		return year;
+	}
+	public String getPrice()
+	{
+		return price;
+	}
+	
+	public void setCategory(String categoryName)
+	{
+		category = categoryName;
+	}
+	public void setRunTime(String run)
+	{
+		runTime = run;
+	}
+	public void setYear(String yearT)
+	{
+		year = yearT;
+	}
+	public void setPrice(String priceM)
+	{
+		price = priceM;
+	}
+	
+	public String toString()
+	{
+		String titleName;
+		String categoryName; 
+		String run;
+		String yearT;
+		String priceM;
+		titleName = title;
+		categoryName = category;
+		run = runTime;
+		yearT = year;
+		priceM = price;
+		return titleName+"\n"+categoryName+"\n"+run+"\n"+yearT+"\n"+priceM;
+	}
+	public boolean equal(Object a)
+	{
+		Class c = a.getClass();
+		if(c.getName()!= "assg6_Chen.DVD")
+		{
+			return false;
+		}
+		else
+		{
+			DVD b = DVD.class.cast(a);
+			String name = b.getTitle();
+			if(title == name)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	
+	public void compareTo(DVD example)
+	{
+		int compareResult;
+		String titleName =example.title;
+		compareResult = title.compareTo(titleName);
+		//i'm confuse about what i should do after the comparison
+		if(compareResult < 0)
+		{
+			
+		}
+		else if(compareResult>0)
+		{
+			
+		}
+	}
+}

@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class grades {
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int i = 0;
+		int b;
+		int[] gradeArray = new int[i];
+		
+		System.out.println("Please enter the number of grades:");
+		i = scan.nextInt(); 
+		
+		for(int a = 0; a<i; a++)
+		{
+			System.out.println("The average grade is:");			
+			b = scan.nextInt();
+			gradeArray[a] = b;
+		}
+		
+	}
+}

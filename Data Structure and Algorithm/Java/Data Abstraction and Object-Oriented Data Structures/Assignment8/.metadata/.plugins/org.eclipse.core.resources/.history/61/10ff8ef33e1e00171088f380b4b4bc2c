@@ -1,0 +1,24 @@
+package assg8_Chen;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class EventList {
+	
+	private LinkedList list;
+	
+	public EventList()
+	{
+		list = new LinkedList();
+	}
+	
+	public boolean isEmpty()
+	{
+		return list.size()== 0;
+	}
+	public void insert(int event)
+	{
+		list.add(event);
+	}
+}

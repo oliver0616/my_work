@@ -1,0 +1,14 @@
+package assg6_Chen;
+
+import java.io.FileNotFoundException;
+
+public interface DVDCollectionInterface 
+{
+	public void loadData(String FileName) throws FileNotFoundException;
+	public void lookupEntry(String DVDTitle);
+	public void addOrChangeDVD(String title, String category,int runTime
+				,int year,int price);
+	public void removeDVD(String DVDTitle);
+	public void getDVDsInCategory(String category);
+	public void save();
+}

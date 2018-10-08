@@ -1,0 +1,132 @@
+package assg3_Chen;
+/**
+ * 
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ * 
+ * @declare acctNo number of the account
+ * @declare balance the money left in the account
+ * 
+ * 
+ */
+public class StudentAccount 
+{
+	private long acctNo ;
+	private double balance;
+	int counter;
+// Constructors	
+	public StudentAccount()
+	{
+	counter ++;
+	acctNo = counter;
+	balance = 0;
+	}
+	public StudentAccount(double initialBalance)
+	{
+		counter++;
+		acctNo = counter;
+		balance = initialBalance;
+	}
+// Methods	
+	public long getAcctNo()
+	{
+		return acctNo;
+	}
+	
+	public double getBalance()
+	{
+		return balance;
+	}
+	
+	public int getCounter()
+	{
+		return counter;
+	}
+	
+	public void setBalance(double theBalance)
+	{
+		if (theBalance < 0)
+		{
+			System.out.println("Negative new balance!");
+		}
+		else
+			balance = theBalance;
+	}
+	
+	public double deposit(double monDeposit)
+	{
+		if(monDeposit < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else	
+			balance = balance +monDeposit;
+			return balance;
+		
+	}
+	
+	public double charge(double monCharge)
+	{
+		if(monCharge < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+			balance = balance - monCharge;
+			return balance;
+	}
+	
+	public void transferIn(StudentAccount randomStudent, double amount)
+	{
+		if(amount < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+		{
+			randomStudent.balance=randomStudent.getBalance()-amount;
+			balance = balance + amount;
+		}
+	}
+	
+	public void transferOut(StudentAccount randomStudent, double amount)
+	{
+		if(amount <0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+		{
+			randomStudent.balance=randomStudent.getBalance()+amount;
+			balance = balance -amount;
+		}
+	}
+	
+	public void printInfo()
+	{
+		System.out.println("Account Number: "+acctNo);
+		System.out.println("Current balance: "+balance);
+	}
+	
+	public String toString()
+	{
+		Long accountNum;
+		Double balanceLeft;
+		accountNum=acctNo;
+		balanceLeft=balance;
+		return "Account Number:"+accountNum.toString()+"\nCurrent Balance: "+ balanceLeft.toString();
+	}
+//==============================================================================
+	//test
+	public static void main(String[] args) {
+		StudentAccount oliver = new StudentAccount(100);
+		StudentAccount kyle = new StudentAccount(999);
+		System.out.println(oliver.toString());
+		System.out.println(kyle.toString());
+		oliver.setBalance(10000);
+		System.out.println(oliver.toString());
+		oliver.deposit(5555);
+		System.out.println(oliver.toString());
+		
+	}
+}

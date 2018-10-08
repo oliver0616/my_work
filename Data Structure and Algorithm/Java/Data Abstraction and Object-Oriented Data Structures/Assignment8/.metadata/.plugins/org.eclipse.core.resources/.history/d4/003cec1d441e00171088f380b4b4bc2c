@@ -1,0 +1,67 @@
+package assg8_Chen;
+import java.io.File;
+import java.io.FileNotFoundException;
+//import java.util.Iterator;
+//import java.util.LinkedList;
+//import java.util.ListIterator;
+import java.util.Scanner;
+
+public class Simulate {
+	
+	public static void main(String[] args) throws FileNotFoundException 
+	{
+		//int costumerNum = 0;
+		//int averageTime;
+		int arriveTime;
+		int processTime;		
+		int departTime;
+		int departMaxTime;
+		EventList arriveList = new EventList();
+		EventList departList = new EventList();
+		File file = new File("Input.txt");
+		Scanner scan = new Scanner(file);
+		String input;
+//===================================================================================
+		//Load Data into the EventList
+		input = scan.nextLine();
+		String[] splitString = input.split("\t");
+		String arriveString = splitString[0];
+		String timeString = splitString[1];
+		arriveTime = Integer.parseInt(arriveString);
+		processTime = Integer.parseInt(timeString);
+		departTime = arriveTime + processTime;
+		departMaxTime = departTime;
+		arriveList.insert(arriveTime);
+		departList.insert(departTime);
+		
+		while(scan.hasNextLine())
+		{
+				input = scan.nextLine();
+				splitString = input.split("\t");
+				arriveString = splitString[0];
+				timeString = splitString[1];
+				arriveTime = Integer.parseInt(arriveString);
+				processTime = Integer.parseInt(timeString);
+				if(arriveTime<departTime)
+				{
+					departTime = processTime + departMaxTime;
+					arriveList.insert(arriveTime);
+					departList.insert(departTime);
+				}
+				else if(arriveTime>departTime)
+				{
+					departMaxTime = arriveTime;
+					departTime = processTime +departMaxTime;
+					arriveList.insert(arriveTime);
+					departList.insert(departTime);
+				}
+		}
+//==================================================================================
+		//print events
+		while(!arriveList.isEmpty()&&!departList.isEmpty())
+		{
+			
+		}
+		
+	}
+}

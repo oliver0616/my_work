@@ -1,0 +1,48 @@
+
+public class RationalNum {
+	
+	int numerator;
+	int denominator;
+	
+	public RationalNum(){
+		numerator = 0;
+		denominator = 1;
+	}
+	
+	public RationalNum(int numeratorPar){
+		numerator = numeratorPar;
+		denominator = 1;
+	}
+	
+	public RationalNum(int numeratorPar,int denominatorPar){
+		numerator = numeratorPar;
+		denominator = denominatorPar;
+		
+		if(denominator == 0){
+			System.out.print("Zero cannot be in the denominator");
+		}
+		else if(denominator <0){
+			denominator = denominator *-1;
+			numerator = numerator *-1;
+		}
+		else if(denominator <0 && numerator <0){
+			denominator = denominator *-1;
+			numerator = numerator * -1;
+		}		
+	}
+	
+	public String toString(){
+		Integer a;
+		Integer b;
+		a=numerator;
+		b=denominator;
+		return a.toString() +"/"+ b.toString();		
+	}
+	
+//================================================================	
+	public static void main(String[] args) {
+		RationalNum a = new RationalNum(12,23);
+		System.out.print(a.toString());
+	}
+	
+}

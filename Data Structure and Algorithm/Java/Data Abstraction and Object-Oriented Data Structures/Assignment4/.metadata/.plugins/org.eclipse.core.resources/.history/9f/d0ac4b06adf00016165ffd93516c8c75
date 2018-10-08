@@ -1,0 +1,5 @@
+package assg4_Chen;
+
+public class BookNotFindException {
+
+}

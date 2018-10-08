@@ -1,0 +1,12 @@
+//Huan-Yun Chen
+//CSCI 2540-001
+
+public class RationalNumDemo {
+	public static void main(String[] args) {
+		RationalNum test = new RationalNum(2,3);
+		RationalNum test1 = new RationalNum(1,0);
+		System.out.print(test.toString());
+		System.out.print(test1.toString());
+	}
+
+}

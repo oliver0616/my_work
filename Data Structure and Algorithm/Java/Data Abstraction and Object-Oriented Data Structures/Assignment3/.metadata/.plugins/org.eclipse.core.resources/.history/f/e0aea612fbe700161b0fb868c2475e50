@@ -1,0 +1,68 @@
+package assg3_Chen;
+/**
+ * 
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ * 
+ * @declare acctNo number of the account
+ * @declare balance the money left in the account
+ * 
+ * 
+ */
+public class StudentAccount 
+{
+	private long acctNo ;
+	private double balance;
+	int counter;
+	
+	public StudentAccount()
+	{
+	acctNo = counter;
+	balance = 0;
+	}
+	public StudentAccount(double initialBalance)
+	{
+		balance = initialBalance;
+	}
+	
+	public long getAcctNo()
+	{
+		return acctNo;
+	}
+	
+	public double getBalance()
+	{
+		return balance;
+	}
+	
+	public int getCounter()
+	{
+		return counter;
+	}
+	
+	public void setBalance(double theBalance)
+	{
+		if (theBalance < 0)
+		{
+			System.out.println("Negative new balance!");
+		}
+		else
+			balance = theBalance;
+	}
+	
+	public double deposit(double monDeposit)
+	{
+		if(monDeposit < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+		balance = balance +monDeposit;
+		return balance;
+	}
+//==============================================================================	
+	public static void main(String[] args) {
+		StudentAccount oliver = new StudentAccount(10);
+		
+	}
+}

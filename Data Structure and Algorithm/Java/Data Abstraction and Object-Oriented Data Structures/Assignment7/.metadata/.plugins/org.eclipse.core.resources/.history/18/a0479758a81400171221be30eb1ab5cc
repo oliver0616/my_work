@@ -1,0 +1,68 @@
+package assg7_Chen;
+
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+
+public class FlightMap implements FlightMapInterface {
+	
+	FlightMap map;
+	
+	/**
+	 * Creates an empty FlightMap
+	 */
+	public FlightMap() 
+	{
+		map = new FlightMap();
+	}
+	
+	public void loadFlightMap(String cityFileName, String flightFileName)
+			throws FileNotFoundException 
+	{
+		
+	}
+
+
+	public void insertAdjacent(City aCity, City adjCity) {		
+	}
+
+	
+	public void displayFlightMap() {		
+	}
+
+	
+	public void displayAllCities() {
+	}
+
+	
+	public void displayAdjacentCities(City aCity) {		
+	}
+
+	
+	public void markVisited(City aCity) {
+	}
+
+	
+	public void unVisitAll() {		
+	}
+
+
+	public boolean isVisited(City aCity) {
+		return false;
+	}
+
+	
+	public City getNextCity(City aCity) {
+		return null;
+	}
+
+	
+	public boolean servesCity(City aCity) {
+		return false;
+	}
+
+
+	public LinkedList<City> getPath(City originCity, City destinationCity) {
+		return null;
+	}
+
+}

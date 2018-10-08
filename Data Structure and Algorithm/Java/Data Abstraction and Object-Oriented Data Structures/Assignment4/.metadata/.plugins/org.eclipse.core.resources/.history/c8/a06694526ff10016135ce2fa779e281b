@@ -1,0 +1,85 @@
+package assg4_Chen;
+
+public class Book 
+{
+	private int bookId;
+	private String bookTitle;
+	private String ISBN;
+	private String authorLast;
+	private char category;
+	boolean flag = false;
+	
+// Constructor
+	public Book(int id, String title, String isbnNum, String authorName, char categoryL)
+	{
+		bookId = id;
+		bookTitle = title;
+		ISBN = isbnNum;
+		authorLast = authorName;
+		category = categoryL;
+	}
+	
+//Method
+	public int getBookId()
+	{
+		return bookId;
+	}
+	public String getTitle()
+	{
+		return bookTitle;
+	}
+	public String getISBN()
+	{
+		return ISBN;
+	}
+	public String getAuthorLast()
+	{
+		return authorLast;
+	}
+	public char getCategory()
+	{
+		return category;
+	}
+	public String toString()
+	{
+		int id; 
+		String title;
+		String isbnNum;
+		String authorName;
+		char categoryL;
+		
+		id =bookId;
+		title = bookTitle;
+		isbnNum = ISBN;
+		authorName = authorLast;
+		categoryL = category;
+		
+		
+		return "Book id: "+ Integer.toString(id)+", Title: "+ title.toString()+
+				", ISBN: "+isbnNum.toString()+", Author: "+ authorName.toString()+
+				", "+Character.toString(categoryL);
+	}
+	public void bookSearch(Book catagoryArray[],int bookNum,int numBookId)
+	{
+		if(numBookId == 0)
+		{
+			System.out.println("End of Program");
+			System.exit(0);
+		}
+		for(int i = 1; i<= bookNum; i++)
+		{
+			if (numBookId == catagoryArray[i].bookId)
+			{
+				flag = true;
+				System.out.println(catagoryArray[i].toString());
+			}
+			else
+				flag=false;
+		}
+		System.out.println(flag);
+		if (flag == false)
+		{
+			new BookNotFindException();
+		}
+	}
+}

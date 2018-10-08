@@ -1,0 +1,47 @@
+package assg8_Chen;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.ListIterator;
+
+public class EventList {
+	
+	private LinkedList list;
+	
+	public EventList()
+	{
+		list = new LinkedList();
+	}
+	
+	public boolean isEmpty()
+	{
+		return list.size()== 0;
+	}
+	public void insert(int event)
+	{
+		list.add(event);
+	}
+	public void printAll()
+	{
+		ListIterator a = list.listIterator();
+		while(a.hasNext())
+		{
+			System.out.println(a.next());
+		}
+	}
+	public void printNext()
+	{
+		System.out.print(list.getFirst());
+	}
+	public int getNext()
+	{
+		Object a = list.getFirst();
+		int answer = (Integer) a;
+		return answer;
+	}
+	public void remove()
+	{
+		list.remove();
+	}
+}

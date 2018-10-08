@@ -1,0 +1,181 @@
+package assg3_Chen;
+/**
+ * 
+ * @author Huan-Yun Chen
+ * CSCI 2540-001
+ * 
+ * @declare acctNo number of the account
+ * @declare balance the money left in the account
+ * 
+ * 
+ */
+//not sure about second constructor & printinfo
+//everything else works
+public class StudentAccount 
+{
+	private long acctNo ;
+	private double balance;
+	static int counter=0;
+	
+// Constructors	
+	public StudentAccount()
+	{
+	acctNo = counter++;
+	balance = 0;
+	}
+	public StudentAccount(double initialBalance)
+	{
+		acctNo = counter++;
+		balance = initialBalance;
+	}
+// Methods	
+	public long getAcctNo()
+	{
+		return acctNo;
+	}
+	
+	public double getBalance()
+	{
+		return balance;
+	}
+	
+	public int getCounter()
+	{
+		return counter;
+	}
+	
+	public void setBalance(double theBalance)
+	{
+		if (theBalance < 0)
+		{
+			System.out.println("Negative new balance!");
+		}
+		else
+			balance = theBalance;
+	}
+	
+	public double deposit(double monDeposit)
+	{
+		if(monDeposit < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else	
+			balance = balance +monDeposit;
+			return balance;
+		
+	}
+	
+	public double charge(double monCharge)
+	{
+		if(monCharge < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+			balance = balance - monCharge;
+			return balance;
+	}
+	
+	public void transferIn(StudentAccount randomStudent, double amount)
+	{
+		if(amount < 0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+		{
+			randomStudent.balance=randomStudent.getBalance()-amount;
+			balance = balance + amount;
+		}
+	}
+	
+	public void transferOut(StudentAccount randomStudent, double amount)
+	{
+		if(amount <0)
+		{
+			System.out.println("Negative number enter!");
+		}
+		else
+		{
+			randomStudent.balance=randomStudent.getBalance()+amount;
+			balance = balance -amount;
+		}
+	}
+	
+	public void printInfo()
+	{
+		System.out.println("Account Number: "+acctNo);
+		System.out.println("Current balance: "+balance);
+	}
+	
+	public String toString()
+	{
+		Long accountNum;
+		Double balanceLeft;
+		accountNum=acctNo;
+		balanceLeft=balance;
+		return "Account Number:"+accountNum.toString()+"\nCurrent Balance: "+ balanceLeft.toString();
+	}
+}
+
+//=================================================================================
+public class RewardAccount extends StudentAccount
+{
+	double rewards;
+	
+	// Constructors
+	public RewardAccount()
+	{
+		rewards = 0;
+	}
+	public RewardAccount(double intialAccount)
+	{
+		if(intialAccount >= 100)
+		{
+			rewards = rewards + 5;
+		}
+	}
+	//Methods
+	public double getRewards()
+	{
+		return rewards;
+	}
+	
+	public void redeemRewards()
+	{
+		if(rewards >= 25)
+		{
+			super.deposit(rewards);
+			rewards = 0;
+		}
+		else if(rewards < 25)
+		{
+			System.out.println("Rewards less than 25, need more rewards");
+		}
+	}
+	
+	public String toString()
+	{
+		Double balanceReward;
+
+		balanceReward=rewards;
+		return super.toString()+"\nRewards Balance: "+balanceReward.toString();
+	}
+	public double deposit(double amount)
+	{
+		if(amount > 100)
+		{
+			amount = amount+5;
+			super.deposit(amount);	
+		}
+	}
+	public void printInfo()
+	{
+		super.printInfo();
+		System.out.print("Rewards Balance:" + rewards);
+	}
+}
+	
+	
+

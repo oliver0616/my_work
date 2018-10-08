@@ -1,0 +1,99 @@
+package assg5_Chen;
+
+import junit.framework.TestCase;
+
+public class TestRationalNum extends TestCase  
+{
+	private RationalNum test,test1,test2,test2_2,test3;
+	private RationalNum test4,test5,test6;
+	private RationalNum result;
+	private boolean resultBool, resultBool1;
+	
+	protected void setUp() 
+	{
+		test = new RationalNum();
+		test1 = new RationalNum(3);
+		//positive number case
+		test2 = new RationalNum(4,5);
+		test2_2=new RationalNum(4,5);
+		test3 = new RationalNum(2,3);
+		// negative number case
+		test4 = new RationalNum(-3);
+		test5 = new RationalNum(-4,5);
+		test6 = new RationalNum(2,3);
+		
+	}
+	public void testDefaultConstructor()
+	{
+		assertEquals("Numerator Value:", 0, test.getNumerator());
+		assertEquals("Denominator Value:", 1, test.getDenominator());
+	}
+	public void testOneParamConstructor()
+	{
+		//positive number case
+		assertEquals("Numerator Value:", 3, test1.getNumerator());
+		assertEquals("Denominator Value:", 1, test1.getDenominator());
+		//negative number case
+		assertEquals("Numerator Value:", -3, test4.getNumerator());
+		assertEquals("Denominator Value:", 1, test4.getDenominator());
+	}
+	public void testTwoParamConstructor()
+	{
+		//positive number case
+		assertEquals("Numerator Value:", 4, test2.getNumerator());
+		assertEquals("Denominator Value:", 5, test2.getDenominator());
+		//negative number case
+		assertEquals("Numerator Value:", -4, test5.getNumerator());
+		assertEquals("Denominator Value:", 5, test5.getDenominator());
+	}
+	public void testToString()
+	{
+		//positive number case
+		assertTrue(test2.toString().equals("4/5"));
+	}
+	public void testAdd()
+	{
+		//positive number case
+		result = test2.add(test3);
+		assertEquals("Numerator:", 22, result.getNumerator());
+		assertEquals("Denominator:", 15, result.getDenominator());
+	}
+	public void testSub()
+	{
+		//positive number case
+		result = test2.sub(test3);
+		assertEquals("Numerator:", 2, result.getNumerator());
+		assertEquals("Denominator:", 15, result.getDenominator());
+	}
+	public void testMul()
+	{
+		//positive number case
+		result = test2.mul(test3);
+		assertEquals("Numerator:", 8, result.getNumerator());
+		assertEquals("Denominator:", 15, result.getDenominator());
+	}
+	public void testDiv()
+	{
+		//positive number case
+		result = test2.div(test3);
+		assertEquals("Numerator:", 12, result.getNumerator());
+		assertEquals("Denominator:", 10, result.getDenominator());
+	}
+	public void testNeg()
+	{
+		//positive number case
+		result = test2.neg();
+		assertEquals("Numerator:", -4, result.getNumerator());
+		assertEquals("Denominator:", 5, result.getDenominator());
+	}
+	public void testEqual()
+	{
+		//False case
+		resultBool = test2.equal(test3);
+		assertFalse(resultBool);
+		//True case
+		resultBool1 = test2.equal(test2_2);
+		assertTrue(resultBool1);
+	}
+
+}

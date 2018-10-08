@@ -1,0 +1,12 @@
+package assg7_Chen;
+import java.io.FileNotFoundException;
+
+public class DeterminePaths 
+{
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		FlightMap test = new FlightMap();
+		test.loadFlightMap("cityFile.txt", "flightFile.txt");
+	}
+
+}

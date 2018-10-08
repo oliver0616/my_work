@@ -1,0 +1,19 @@
+//Name: Huan-Yun Chen
+//CSCI 2540-001
+
+import java.util.Scanner;
+
+public class BreakInt {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int number;
+		
+		System.out.println("Please enter an integer:");
+		number = scan.nextInt();
+		
+		while (number > 0) {
+			System.out.println( number % 10);
+		    number = number / 10;
+		}
+	}
+}

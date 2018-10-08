@@ -1,0 +1,58 @@
+package assg3_Chen;
+
+public class RewardsAccount extends StudentAccount {
+	double rewards;
+		
+	// Constructors
+	public RewardsAccount()
+	{
+		super(initialBalance);
+		rewards = 0;
+	}
+	public RewardsAccount(double intialAccount)
+	{
+		super(initialBalance);
+		if(intialAccount >= 100)
+		{
+			rewards = rewards + 5;
+		}
+	}
+	//Methods
+	public double getRewards()
+	{
+		return rewards;
+	}
+		
+	public void redeemRewards()
+	{
+		if(rewards >= 25)
+		{
+			super.deposit(rewards);
+			rewards = 0;
+		}
+		else if(rewards < 25)
+		{
+			System.out.println("Rewards less than 25, need more rewards");
+		}
+	}
+		
+	public String toString()
+	{
+		Double balanceReward;
+
+		balanceReward=rewards;
+		return super.toString()+"\nRewards Balance: "+balanceReward.toString();
+	}
+	public void deposit(double amount)
+	{
+		if(amount > 100)
+		{
+			rewards = rewards +5;
+		}
+	}
+		public void printInfo()
+		{
+			super.printInfo();
+			System.out.print("Rewards Balance:" + rewards);
+		}
+}

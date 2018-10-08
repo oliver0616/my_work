@@ -1,0 +1,79 @@
+//Huan-Yun Chen
+
+public class RationalNum {
+	
+	int numerator;
+	int denominator;
+	
+	// when the rational number equal to 0
+	public RationalNum(){
+		numerator = 0;
+		denominator = 1;
+	}
+	
+	// when user enter a integer as a rational number
+	public RationalNum(int numeratorPar){
+		numerator = numeratorPar;
+		denominator = 1;
+	}
+	
+	//when numerator and denominator both have a value
+	public RationalNum(int numeratorPar,int denominatorPar){
+		numerator = numeratorPar;
+		denominator = denominatorPar;
+		
+		// user try to type in zero as the denominator
+		if(denominator == 0){
+			System.out.print("Zero cannot be in the denominator");
+		}
+		// switch denominator into positive number and switch numerator to negative number 
+		else if(denominator <0){
+			denominator = denominator *-1;
+			numerator = numerator *-1;
+		}
+		// change denominator and numerator back to positive when both are negative
+		else if(denominator <0 && numerator <0){
+			denominator = denominator *-1;
+			numerator = numerator * -1;
+		}		
+	}
+	// return numerator and denominator as a string
+	public String toString(){
+		Integer a;
+		Integer b;
+		a=numerator;
+		b=denominator;
+		return a.toString() +"/"+ b.toString();		
+	}
+	
+	/*public boolean equal(Object a){
+		Class c = a.getClass();
+		if(c.getName()!="RationalNum"){
+			return false;
+			}
+		}	*/
+	//return denominator
+	public int getDenominator(){
+		return denominator;
+	}
+	//return numerator
+	public int getNumerator(){
+		return numerator;
+	}
+	//(A/B) + (C/D) = (A*D + B*C) / (B*D)
+	public RationalNum add(RationalNum y){
+		int a,b;
+		a = (numerator*y.getDenominator() + denominator*y.getNumerator());
+		b = (denominator*y.getDenominator());
+		RationalNum z = new RationalNum(a,b);
+		return z;
+	}
+	
+	
+//================================================================	
+	public static void main(String[] args) {
+		RationalNum a = new RationalNum(12,23);
+		System.out.print(a.toString());
+	}
+	
+}

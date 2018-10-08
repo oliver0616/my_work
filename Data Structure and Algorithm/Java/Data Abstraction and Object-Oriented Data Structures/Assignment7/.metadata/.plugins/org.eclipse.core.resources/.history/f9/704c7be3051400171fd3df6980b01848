@@ -1,0 +1,10 @@
+package assg7_Chen;
+
+public class Main {
+	public static void main(String arg[])
+	{
+		Stack test = new Stack();
+		test.push(12);
+		System.out.println(test.isEmpty());
+	}
+}
